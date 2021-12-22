@@ -54,7 +54,32 @@ pub mod p21 {
       }
     }
 
-    println!("horiz = {}, vert = {}", horiz, vert);
+    // println!("horiz = {}, vert = {}", horiz, vert);
+    horiz * vert
+  }
+}
+
+pub mod p22 {
+  // product of horizontal and vert but using aim
+  pub fn solve() -> i32 {
+    let commands = crate::p2::parse_p2();
+    let mut aim = 0;
+    let mut horiz = 0;
+    let mut vert = 0;
+
+    for command in commands {
+      match command.direction {
+        crate::p2::Dir::Up => aim -= command.dist,
+        crate::p2::Dir::Down => aim += command.dist,
+        crate::p2::Dir::Forward => {
+          horiz += command.dist;
+          vert += aim * command.dist;
+        }
+        _ => (),
+      }
+    }
+
+    // println!("horiz = {}, vert = {}", horiz, vert);
     horiz * vert
   }
 }
