@@ -10,14 +10,14 @@ fn parse_p3() -> Vec<String> {
   contents.split("\n").map(|x| x.trim().to_string()).collect()
 }
 
-fn count_bit(readings: &Vec<String>, i: usize) -> usize {
+fn common_bit(readings: &Vec<String>, i: usize, n: usize) -> u8 {
   let mut count = 0;
   for reading in readings {
     if reading.as_bytes()[i] == 48 {
       count += 1;
     }
   }
-  return count;
+  return if count > n / 2 { 0 } else { 1 };
 }
 
 pub mod p31 {
@@ -33,8 +33,8 @@ pub mod p31 {
     let mut epsilon = 0;
 
     while i < readings[0].len() {
-      let x = p3::count_bit(&readings, i);
-      if x > (n / 2) {
+      let common_bit = p3::common_bit(&readings, i, n);
+      if common_bit == 0 {
         gamma = gamma * 2 + 0;
         epsilon = epsilon * 2 + 1;
       } else {
@@ -47,27 +47,43 @@ pub mod p31 {
   }
 }
 
-// pub mod p22 {
-//   // product of horizontal and vert but using aim
-//   pub fn solve() -> i32 {
-//     let commands = crate::p3::parse_p3();
-//     let mut aim = 0;
-//     let mut horiz = 0;
-//     let mut vert = 0;
+pub mod p32 {
+  use crate::p3;
 
-//     for command in commands {
-//       match command.direction {
-//         crate::p2::Dir::Up => aim -= command.dist,
-//         crate::p2::Dir::Down => aim += command.dist,
-//         crate::p2::Dir::Forward => {
-//           horiz += command.dist;
-//           vert += aim * command.dist;
-//         }
-//         _ => (),
-//       }
-//     }
+  fn filter_readings(subset_readings: &Vec<String>, i: usize, filter_bit: u8) -> Vec<String> {
+    let mut clone_readings = subset_readings.clone();
+    clone_readings.retain(|x| x.as_bytes()[i] == filter_bit + 48);
+    clone_readings
+  }
 
-//     // println!("horiz = {}, vert = {}", horiz, vert);
-//     horiz * vert
-//   }
-// }
+  fn bin_to_i32(bin: &String) -> i32 {
+    let mut out = 0;
+    for b in bin.as_bytes() {
+      out = out * 2 + ((b - 48) as i32);
+    }
+    out as i32
+  }
+
+  // oxygen and CO2 rating
+  pub fn solve() -> i32 {
+    let mut curr_readings = p3::parse_p3();
+    let mut i = 0;
+    while curr_readings.len() > 1 {
+      let curr_common_bit = p3::common_bit(&curr_readings, i, curr_readings.len());
+      curr_readings = filter_readings(&curr_readings, i, curr_common_bit);
+      i += 1;
+    }
+    let oxy = bin_to_i32(&curr_readings[0]);
+
+    let mut curr_readings = p3::parse_p3();
+    let mut i = 0;
+    while curr_readings.len() > 1 {
+      let curr_common_bit = p3::common_bit(&curr_readings, i, curr_readings.len());
+      curr_readings = filter_readings(&curr_readings, i, if curr_common_bit == 0 { 1 } else { 0 });
+      i += 1;
+    }
+    let co2 = bin_to_i32(&curr_readings[0]);
+
+    oxy * co2
+  }
+}
