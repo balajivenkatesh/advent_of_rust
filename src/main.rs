@@ -1,6 +1,8 @@
 mod p1;
 mod p2;
 mod p3;
+mod p4;
+mod utils;
 
 fn main() {
     // let out = p1::p11::solve();
@@ -20,7 +22,11 @@ fn main() {
     // println!("out = {}", out);
     // assert_eq!(out, 1025636);
 
-    let out = p3::p32::solve();
+    // let out = p3::p32::solve();
+    // println!("out = {}", out);
+    // assert_eq!(out, 793873);
+
+    let out = p4::p41::solve();
     println!("out = {}", out);
-    assert_eq!(out, 793873);
+    assert_eq!(out, 71708);
 }
