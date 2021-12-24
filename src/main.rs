@@ -26,7 +26,15 @@ fn main() {
     // println!("out = {}", out);
     // assert_eq!(out, 793873);
 
-    let out = p4::p41::solve();
+    // let out = p4::p41::solve();
+    // println!("out = {}", out);
+    // assert_eq!(out, 71708);
+
+    // let out = p4::p42::solve();
+    // println!("out = {}", out);
+    // assert_eq!(out, 34726);
+
+    let out = p4::p42::solve();
     println!("out = {}", out);
-    assert_eq!(out, 71708);
+    assert_eq!(out, 34726);
 }
