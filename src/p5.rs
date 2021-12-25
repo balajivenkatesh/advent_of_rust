@@ -42,6 +42,32 @@ fn parse_p5() -> Vec<Line> {
   lines
 }
 
+fn init_grid(size: usize) -> Vec<Vec<u8>> {
+  let mut grid = Vec::<Vec<u8>>::new();
+
+  for _i in 0..size {
+    let mut row = Vec::<u8>::new();
+    for _j in 0..size {
+      row.push(0);
+    }
+    grid.push(row);
+  }
+  grid
+}
+
+fn grid_risk(grid: &Vec<Vec<u8>>) -> i32 {
+  let mut count = 0;
+  for row in grid {
+    // println!("{:?}", row);
+    for cell in row {
+      if *cell > 1 {
+        count += 1;
+      }
+    }
+  }
+  count
+}
+
 pub mod p51 {
   use crate::p5;
   use std::cmp;
@@ -50,16 +76,7 @@ pub mod p51 {
   pub fn solve() -> i32 {
     let lines = p5::parse_p5();
 
-    let mut grid = Vec::<Vec<u8>>::new();
-
-    let size = 1000;
-    for _i in 0..size {
-      let mut row = Vec::<u8>::new();
-      for _j in 0..size {
-        row.push(0);
-      }
-      grid.push(row);
-    }
+    let mut grid = p5::init_grid(1000);
 
     for line in lines {
       if line.a.x == line.b.x {
@@ -74,15 +91,7 @@ pub mod p51 {
         // println!("here");
       }
     }
-    let mut count = 0;
-    for row in grid {
-      // println!("{:?}", row);
-      for cell in row {
-        if cell > 1 {
-          count += 1;
-        }
-      }
-    }
-    count
+
+    p5::grid_risk(&grid)
   }
 }
