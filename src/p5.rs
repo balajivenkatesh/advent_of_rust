@@ -1,6 +1,7 @@
 #![allow(dead_code)]
 
 use crate::utils;
+use std::cmp;
 
 #[derive(Copy, Clone)]
 struct Point {
@@ -55,6 +56,25 @@ fn init_grid(size: usize) -> Vec<Vec<u8>> {
   grid
 }
 
+fn assess_grid(lines: &Vec<Line>, grid: &mut Vec<Vec<u8>>, assess_diag: bool) {
+  for line in lines {
+    if line.a.x == line.b.x {
+      for j in cmp::min(line.a.y, line.b.y)..(cmp::max(line.a.y, line.b.y) + 1) {
+        grid[line.a.x as usize][j as usize] += 1;
+      }
+    } else if line.a.y == line.b.y {
+      for i in cmp::min(line.a.x, line.b.x)..(cmp::max(line.a.x, line.b.x) + 1) {
+        grid[i as usize][line.a.y as usize] += 1;
+      }
+    } else {
+      if !assess_diag {
+        continue;
+      }
+      // println!("here");
+    }
+  }
+}
+
 fn grid_risk(grid: &Vec<Vec<u8>>) -> i32 {
   let mut count = 0;
   for row in grid {
@@ -70,7 +90,6 @@ fn grid_risk(grid: &Vec<Vec<u8>>) -> i32 {
 
 pub mod p51 {
   use crate::p5;
-  use std::cmp;
 
   // winning bingo board is a vert board
   pub fn solve() -> i32 {
@@ -78,19 +97,7 @@ pub mod p51 {
 
     let mut grid = p5::init_grid(1000);
 
-    for line in lines {
-      if line.a.x == line.b.x {
-        for j in cmp::min(line.a.y, line.b.y)..(cmp::max(line.a.y, line.b.y) + 1) {
-          grid[line.a.x as usize][j as usize] += 1;
-        }
-      } else if line.a.y == line.b.y {
-        for i in cmp::min(line.a.x, line.b.x)..(cmp::max(line.a.x, line.b.x) + 1) {
-          grid[i as usize][line.a.y as usize] += 1;
-        }
-      } else {
-        // println!("here");
-      }
-    }
+    p5::assess_grid(&lines, &mut grid, false);
 
     p5::grid_risk(&grid)
   }
