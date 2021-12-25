@@ -2,6 +2,7 @@
 
 use crate::utils;
 use std::cmp;
+extern crate num;
 
 #[derive(Copy, Clone)]
 struct Point {
@@ -70,6 +71,13 @@ fn assess_grid(lines: &Vec<Line>, grid: &mut Vec<Vec<u8>>, assess_diag: bool) {
       if !assess_diag {
         continue;
       }
+      let mut j = 0;
+      let xdir = num::signum(line.b.x - line.a.x);
+      let ydir = num::signum(line.b.y - line.a.y);
+      while j <= cmp::min((line.a.x - line.b.x).abs(), (line.a.y - line.b.y).abs()) {
+        grid[(line.a.x + xdir * j) as usize][(line.a.y + ydir * j) as usize] += 1;
+        j += 1;
+      }
       // println!("here");
     }
   }
@@ -98,6 +106,21 @@ pub mod p51 {
     let mut grid = p5::init_grid(1000);
 
     p5::assess_grid(&lines, &mut grid, false);
+
+    p5::grid_risk(&grid)
+  }
+}
+
+pub mod p52 {
+  use crate::p5;
+
+  // winning bingo board is a vert board
+  pub fn solve() -> i32 {
+    let lines = p5::parse_p5();
+
+    let mut grid = p5::init_grid(1000);
+
+    p5::assess_grid(&lines, &mut grid, true);
 
     p5::grid_risk(&grid)
   }
