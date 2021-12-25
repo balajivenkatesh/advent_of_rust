@@ -2,7 +2,7 @@
 
 const BASE_PATH: &str = "D:/rust-projects/advent_of_rust/src/data";
 pub fn parse_p11() -> Vec<i32> {
-  let filename = crate::p1::BASE_PATH.to_owned() + "/p11.txt";
+  let filename = crate::p1::BASE_PATH.to_owned() + "/p1.txt";
   // println!("filename = {}", filename);
 
   let contents = std::fs::read_to_string(filename).expect("Somenthing went wrong reading file");
