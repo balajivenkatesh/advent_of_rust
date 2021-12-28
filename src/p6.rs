@@ -1,4 +1,7 @@
 #![allow(dead_code)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unused_mut)]
 
 use crate::utils;
 
@@ -12,7 +15,6 @@ pub mod p61 {
 
   // winning bingo board is a vert board
   pub fn solve() -> i32 {
-    let inputs = p6::parse_p6();
     let mut data = [[0; 80]; 9];
     for i in 0..9 {
       data[i][0] = i;
@@ -40,6 +42,7 @@ pub mod p61 {
 
     // println!("data = {:?}", data);
 
+    let inputs = p6::parse_p6();
     let mut jelly_ct = inputs.len();
     let curr_gen = inputs.clone();
     let next_gen = Vec::<i32>::new();
