@@ -5,6 +5,7 @@ mod p4;
 mod p5;
 mod p6;
 mod p8;
+mod p9;
 mod utils;
 
 fn main() {
@@ -49,15 +50,21 @@ fn main() {
     // println!("out = {}", out);
     // assert_eq!(out, 21698);
 
-    // p71
+    // // p71
+    // let out = 347449;
     // println!("out = {}", out);
     // assert_eq!(out, 347449);
 
-    // p72
+    // // p72
+    // let out = 98039527;
     // println!("out = {}", out);
     // assert_eq!(out, 98039527);
 
-    let out = p8::p81::solve();
+    // let out = p8::p81::solve();
+    // println!("out = {}", out);
+    // assert_eq!(out, 321);
+
+    let out = p9::p91::solve();
     println!("out = {}", out);
-    assert_eq!(out, 321);
+    assert_eq!(out, 456);
 }

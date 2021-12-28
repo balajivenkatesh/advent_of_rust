@@ -14,7 +14,11 @@ pub fn read_lines(px: &str) -> Vec<String> {
 }
 
 pub fn split_parse_i32(text: &str, split: &str) -> Vec<i32> {
-  text.split(split).map(|x| x.parse().expect("NaN")).collect()
+  text
+    .split(split)
+    .filter(|x| *x != "")
+    .map(|x| x.parse().expect("NaN"))
+    .collect()
 }
 
 pub fn split_str(text: &String, split: &String) -> Vec<String> {
