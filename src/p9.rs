@@ -44,3 +44,39 @@ pub mod p91 {
     count
   }
 }
+
+pub mod p92 {
+  use crate::p9;
+
+  pub fn traverse_basin(data: &mut Vec<Vec<u8>>, x: i32, y: i32) -> i32 {
+    if x < 0 || y < 0 || x >= data.len() as i32 || y >= data[0].len() as i32 {
+      return 0;
+    }
+    if data[x as usize][y as usize] == 9 || data[x as usize][y as usize] == 10 {
+      return 0;
+    }
+    data[x as usize][y as usize] = 10;
+    1 + traverse_basin(data, x + 1, y)
+      + traverse_basin(data, x, y + 1)
+      + traverse_basin(data, x - 1, y)
+      + traverse_basin(data, x, y - 1)
+  }
+
+  pub fn solve() -> i32 {
+    let mut data = p9::parse_p9();
+
+    let mut basin_sizes: Vec<i32> = Vec::new();
+
+    for i in 0..data.len() {
+      for j in 0..data[i].len() {
+        if data[i][j] == 9 || data[i][j] == 10 {
+          continue;
+        }
+        basin_sizes.push(traverse_basin(&mut data, i as i32, j as i32));
+      }
+    }
+    basin_sizes.sort();
+    basin_sizes.reverse();
+    basin_sizes[0] * basin_sizes[1] * basin_sizes[2]
+  }
+}
