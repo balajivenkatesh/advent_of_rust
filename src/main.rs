@@ -73,7 +73,11 @@ fn main() {
     // println!("out = {}", out);
     // assert_eq!(out, 1047744);
 
-    let out = p10::p1::solve();
+    // let out = p10::p1::solve();
+    // println!("out = {}", out);
+    // assert_eq!(out, 318099);
+
+    let out = p10::p2::solve();
     println!("out = {}", out);
-    assert_eq!(out, 318099);
+    assert_eq!(out, 2389738699);
 }
