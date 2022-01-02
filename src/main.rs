@@ -15,7 +15,6 @@ fn main() {
   let matches = App::new("Advent of Code 2021")
     .version("1.0")
     .author("Balaji")
-    .about("Advent of Code 2021")
     .arg(
       Arg::with_name("day")
         .short("d")
