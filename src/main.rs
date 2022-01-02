@@ -34,8 +34,30 @@ fn main() {
     )
     .get_matches();
 
+  println!("");
+
   let day = matches.value_of("day").unwrap_or("1");
+  if day.parse::<i32>().expect("Day is NaN") > 25 {
+    clap::Error::with_description(
+      "Invalid day, must be between 1 and 25\n",
+      clap::ErrorKind::InvalidValue,
+    )
+    .exit();
+  }
+
   let part = matches.value_of("part").unwrap_or("1");
+  match part {
+    "1" | "2" => {}
+    _ => {
+      clap::Error::with_description(
+        "Invalid part, must be 1 or 2\n",
+        clap::ErrorKind::InvalidValue,
+      )
+      .exit();
+    }
+  }
+
+  println!("Running day = {}, part = {}\n", day, part);
 
   let mut puzzle = day.to_owned();
   puzzle.push_str(".");
@@ -130,4 +152,5 @@ fn main() {
       println!("Unsolved");
     }
   }
+  println!("");
 }

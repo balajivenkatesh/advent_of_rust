@@ -8,4 +8,3 @@ edition = "2021"
 [dependencies]
 num = "0.4"
 clap = "2.34"
-regex = "1"
