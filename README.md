@@ -2,6 +2,9 @@
 
 ```bash
 $ cargo run -- --day <day> --part <part>
+
+$ cargo run -- --day 1 --part 1
+
 ```
 
 ```
