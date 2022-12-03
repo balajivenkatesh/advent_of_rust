@@ -1,6 +1,6 @@
 mod p1;
 // mod p10;
-// mod p2;
+mod p2;
 // mod p3;
 // mod p4;
 // mod p5;
@@ -71,14 +71,15 @@ fn main() {
             assert_eq!(out, 72240);
         }
         "1.2" => {
-          let out = p1::p12::solve();
+            let out = p1::p12::solve();
             println!("out [puzzle {}] = {}", puzzle, out);
             assert_eq!(out, 210957);
         }
-        // "2.1" => {
-        //   let out = p2::p21::solve();
-        //   assert_eq!(out, 1484118);
-        // }
+        "2.1" => {
+            let out = p2::p21::solve();
+            println!("out [puzzle {}] = {}", puzzle, out);
+            assert_eq!(out, 12535);
+        }
         // "2.2" => {
         //   let out = p2::p22::solve();
         //   println!("out = {}", out);
