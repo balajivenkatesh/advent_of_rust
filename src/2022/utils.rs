@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-const DATA_BASE_PATH: &str = "./2022/data";
+const DATA_BASE_PATH: &str = "./src/2022/data";
 
 pub fn read_data(px: &str) -> String {
   let filename = DATA_BASE_PATH.to_owned() + "/" + px;

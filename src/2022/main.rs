@@ -80,11 +80,11 @@ fn main() {
             println!("out [puzzle {}] = {}", puzzle, out);
             assert_eq!(out, 12535);
         }
-        // "2.2" => {
-        //   let out = p2::p22::solve();
-        //   println!("out = {}", out);
-        //   assert_eq!(out, 1463827010);
-        // }
+        "2.2" => {
+          let out = p2::p22::solve();
+          println!("out = {}", out);
+          assert_eq!(out, 15457);
+        }
         // "3.1" => {
         //   let out = p3::p31::solve();
         //   println!("out = {}", out);
