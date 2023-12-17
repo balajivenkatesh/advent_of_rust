@@ -68,7 +68,7 @@ fn main() {
         "1.1" => {
             let out = p1::p11::solve();
             println!("out [puzzle {}] = {}", puzzle, out);
-            assert_eq!(out, 1);
+            assert_eq!(out, 55029);
         }
         "1.2" => {
             let out = p1::p12::solve();
