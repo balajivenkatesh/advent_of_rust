@@ -5,7 +5,7 @@ edition = "2021"
 
 [[bin]]
 name = "main"
-path = "src/2022/main.rs"
+path = "src/2023/main.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
